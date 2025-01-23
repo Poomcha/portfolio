@@ -26,12 +26,11 @@ app.use("/api/chat", async (req, res) => {
 
     // Stream back chatStreamResponse
     for await (const event of chatStreamResponse) {
-      res.write(JSON.stringify(event));
+      res.write(event.data.choices[0].delta.content);
     }
 
     res.end();
   } catch (error) {
-    // console.log(error);
 
     throw new Error("Service Unavailable.");
   }
