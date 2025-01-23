@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
 import Layout from "./Layout.vue"
+import QuestionAnswer from "./components/QuestionAnswer.vue";
+
+import { Store } from "./store";
+
+const store = computed(() => new Store());
 </script>
 
 <template>
@@ -9,6 +16,7 @@ import Layout from "./Layout.vue"
      Create a Answer component: display AI answers
      Create a Question component: display User questions 
      -->
+    <QuestionAnswer :store="store" />
   </Layout>
 </template>
 

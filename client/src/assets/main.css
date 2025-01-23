@@ -11,10 +11,28 @@ a,
   padding: 3px;
 }
 
+li {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+  border: none;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  caret-color: var(--color-text);
+}
+
+.flex {
+  display: flex;
+}
+
+.gap-fs {
+  gap: calc(var(--font-size) / 3);
+}
+
 @media (hover: hover) {
-  
 }
 
 @media (min-width: 1024px) {
-
 }

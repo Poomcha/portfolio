@@ -11,12 +11,15 @@ app.use(
   cors({
     origin: `${process.env.CLIENT_SERVER_URL}:${process.env.CLIENT_SERVER_PORT}`,
     methods: ["OPTION", "POST"],
-    allowedHeaders: ["Content-Type"]
+    allowedHeaders: ["Content-Type"],
   })
 );
 app.use(helmet());
 
 app.use("/api/chat", async (req, res) => {
+  res.setHeader("Content-Type", "text/plain");
+  res.setHeader("Transfer-Encoding", "chunked");
+  
   const { prompt } = req.body;
 
   const mistralClient = new MistralClient();
@@ -31,7 +34,6 @@ app.use("/api/chat", async (req, res) => {
 
     res.end();
   } catch (error) {
-
     throw new Error("Service Unavailable.");
   }
 });

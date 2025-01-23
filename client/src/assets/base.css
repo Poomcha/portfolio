@@ -6,6 +6,11 @@
   --color-text: #eff0f1;
 }
 
+/* Size */
+:root {
+  --font-size: 18px;
+}
+
 *,
 *::before,
 *::after {
@@ -34,7 +39,7 @@ body {
     'Droid Sans',
     'Helvetica Neue',
     sans-serif;
-  font-size: 18px;
+  font-size: var(--font-size);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
