@@ -6,7 +6,7 @@ export class Mistral {
   private endpoint = import.meta.env.VITE_SERVER_ENDPOINT
 
   public async chat(question: string) {
-    const url = `${this.url}:${this.port}${this.endpoint}`
+    const url = `https://portfolio-liart-eight-49.vercel.app/api/chat`
 
     const response = await fetch(url, {
       method: 'POST',
