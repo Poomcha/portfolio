@@ -9,16 +9,16 @@
 
 /* Size */
 :root {
-  --font-size: 20px;
+  --font-size: 1rem;
   --height-button: 1.8rem;
 }
 
 /* Padding, Margin */
 :root {
-  --padding-lr-layout: 30px;
+  --padding-lr-layout: 2rem;
   --padding-tb-layout: 0;
-  --padding-lr-btn: 18px;
-  --padding-tb-btn: 22px;
+  --padding-lr-btn: 1rem;
+  --padding-tb-btn: 1.25rem;
 }
 
 *,

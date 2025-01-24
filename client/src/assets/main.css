@@ -11,7 +11,6 @@ a {
 
 footer a {
   color: var(--color-background);
-  padding: 0 var(--padding-lr-btn);
 }
 
 li {
@@ -59,17 +58,21 @@ button:hover {
   align-items: center;
 }
 
+.flex-evenly-x {
+  justify-content: space-evenly;
+}
+
 .p-relative {
   position: relative;
 }
 
 .gap-fs {
-  gap: calc(var(--font-size) / 3);
+  gap: 0.5rem;
 }
 
 .icon {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 @media (hover: hover) {

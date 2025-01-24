@@ -1,6 +1,6 @@
 <!-- Global Layout of the app -->
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 
 const footer = ref(null)
 const contact = ref(null)
@@ -59,7 +59,7 @@ function handleClick() {
                 </div>
                 <img src="./assets/icons/caret-up-solid.svg" alt="Show Footer" class="icon icon-caret" ref="icon">
             </button>
-            <ul class="flex gap-fs contact" ref="contact">
+            <ul class="flex flex-evenly-x gap-fs contact" ref="contact">
                 <li>
                     <a href="https://www.linkedin.com/in/benjamin-degen%C3%A8ve-93b991186/"
                         class="flex flex-center gap-fs">
@@ -105,7 +105,7 @@ function handleClick() {
 .contact {
     background-color: var(--color-text);
     color: var(--color-background);
-    padding: var(--padding-lr-btn);
+    padding: 0.5rem;
     border-top-left-radius: 0.2rem;
     border-bottom-right-radius: 0.2rem;
     border-bottom-left-radius: 0.2rem;
