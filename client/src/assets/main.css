@@ -20,6 +20,8 @@ input {
   background-color: var(--color-background);
   color: var(--color-text);
   caret-color: var(--color-text);
+  font-weight: 500;
+  letter-spacing: inherit;
 }
 
 button {
@@ -31,7 +33,9 @@ button {
   border-radius: 0.2rem;
   font-size: var(--font-size);
   color: var(--color-background);
-  padding: var(--padding-lr-btn);
+  padding: var(--padding-tb-btn) var(--padding-lr-btn);
+  font-weight: inherit;
+  letter-spacing: inherit;
 }
 
 button:hover {
