@@ -6,6 +6,10 @@
 
 a {
   text-decoration: none;
+  color: var(--color-link);
+}
+
+footer a {
   color: var(--color-background);
   padding: 0 var(--padding-lr-btn);
 }
