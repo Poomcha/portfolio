@@ -2,7 +2,8 @@
   "name": "terminal-portfolio-ai",
   "version": "1.0.0",
   "scripts": {
-    "deploy": "npm run build --prefix client && npm run server --prefix server"
+    "deploy": "npm run build --prefix client && npm run server --prefix server",
+    "install": "npm install --prefix client && npm install --prefix server"
   },
   "author": "",
   "license": "ISC",
