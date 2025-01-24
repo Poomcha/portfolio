@@ -1,14 +1,13 @@
 @import './base.css';
 
 #app {
+  max-width: 100%;
 }
 
-a,
-.green {
+a {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+  color: var(--color-background);
+  padding: 0 var(--padding-lr-btn);
 }
 
 li {
@@ -23,12 +22,46 @@ input {
   caret-color: var(--color-text);
 }
 
+button {
+  height: var(--height-button);
+  width: fit-content;
+  background-color: var(--color-text);
+  outline: none;
+  border: none;
+  border-radius: 0.2rem;
+  font-size: var(--font-size);
+  color: var(--color-background);
+  padding: var(--padding-lr-btn);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 .flex {
   display: flex;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.p-relative {
+  position: relative;
+}
+
 .gap-fs {
   gap: calc(var(--font-size) / 3);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
 }
 
 @media (hover: hover) {

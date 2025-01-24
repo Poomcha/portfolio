@@ -9,6 +9,15 @@
 /* Size */
 :root {
   --font-size: 18px;
+  --height-button: 1.8rem;
+}
+
+/* Padding, Margin */
+:root {
+  --padding-lr-layout: 30px;
+  --padding-tb-layout: 0;
+  --padding-lr-btn: 10px;
+  --padding-tb-btn: 0;
 }
 
 *,
@@ -22,7 +31,7 @@
 
 body {
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   color: var(--color-text);
   background: var(--color-background);
   line-height: 1.6;
@@ -43,4 +52,11 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+footer {
+  width: calc(100% - 2 * var(--padding-lr-layout));
+  position: fixed;
+  top: calc(100vh - var(--height-button));
+  animation-fill-mode: forwards;
 }
