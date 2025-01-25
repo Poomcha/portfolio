@@ -12,8 +12,6 @@ function updateQuestion(event: Event) {
 
 async function handleSubmit(event: Event) {
 
-
-
     const mistral = new Mistral()
 
     const question = props.store.getStoreQuestion(props.id)

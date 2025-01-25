@@ -58,7 +58,44 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  text-decoration: none;
+  color: var(--color-link);
+}
+
+footer a {
+  color: var(--color-background);
+}
+
+li {
+  list-style-type: none;
+}
+
+p[contenteditable] {
+  width: 100%;
+  caret-color: var(--color-text);
+  font-weight: 500;
+  letter-spacing: inherit;
+}
+
+button {
+  height: var(--height-button);
+  width: fit-content;
+  background-color: var(--color-text);
+  outline: none;
+  border: none;
+  border-radius: 0.2rem;
+  font-size: var(--font-size);
+  color: var(--color-background);
+  padding: var(--padding-tb-btn) var(--padding-lr-btn);
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 footer {
-  width: calc(100% - 2 * var(--padding-lr-layout));
-  animation-fill-mode: forwards;
+  width: 100%;
 }
