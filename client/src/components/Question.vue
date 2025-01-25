@@ -11,44 +11,45 @@ function updateQuestion(event: Event) {
 }
 
 async function handleSubmit(event: Event) {
-    // Assistant is display ahead of response
-    props.store.setStoreAnswer(" ", props.id);
 
-    // Disable contentEditable
-    (event.target as HTMLParagraphElement).attributes.removeNamedItem("contenteditable")
+
 
     const mistral = new Mistral()
 
     const question = props.store.getStoreQuestion(props.id)
-    if (question) {
-            try {
-                // This should be a stream
-                const response = await mistral.chat(question)
+    if (question && question.trim().length > 0) {
+        // Assistant is display ahead of response
+        props.store.setStoreAnswer(" ", props.id);
 
-                if (response) {
-                    const reader = response.getReader()
-                    const decoder = new TextDecoder('utf-8')
+        // Disable contentEditable
+        (event.target as HTMLParagraphElement).attributes.removeNamedItem("contenteditable")
 
-                    while (true) {
-                        const { done, value } = await reader.read();
-                        if (done) {
-                            break;
-                        }
-                        const chunk = decoder.decode(value, { stream: true });
-                        props.store.appendToStoreAnswer(chunk, props.id)
-                    }
-                }
+        //     try {
+        //         // This should be a stream
+        //         const response = await mistral.chat(question)
+
+        //         if (response) {
+        //             const reader = response.getReader()
+        //             const decoder = new TextDecoder('utf-8')
+
+        //             while (true) {
+        //                 const { done, value } = await reader.read();
+        //                 if (done) {
+        //                     break;
+        //                 }
+        //                 const chunk = decoder.decode(value, { stream: true });
+        //                 props.store.appendToStoreAnswer(chunk, props.id)
+        //             }
+        //         }
 
 
-        } catch (error) {
-            throw error
-        }
+        // } catch (error) {
+        //     throw error
+        // }
 
         // Insert new question prompt
         props.store.insertNewQA()
     }
-
-
 }
 
 const contentEditable = ref<HTMLParagraphElement | null>(null)
@@ -56,7 +57,6 @@ const contentEditable = ref<HTMLParagraphElement | null>(null)
 onMounted(() => {
     const contentEditableId = contentEditable.value!.dataset["id"]!
     if (props.store.getCurrentQuestionId() === contentEditableId) {
-        console.log("focusing...")
         contentEditable.value!.focus()
     }
 })
