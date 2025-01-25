@@ -12,7 +12,7 @@ function handleClick() {
     const contactSize = (contact.value! as HTMLUListElement).offsetHeight;
     const translateOffset = direction < 0 ? direction * contactSize - 30 : 0;
     const rotationAngle = direction < 0 ? direction * 180 : 0;
-
+ 
     const animateOptions: KeyframeAnimationOptions = {
         // Temporisation
         duration: 300,

@@ -106,6 +106,10 @@ class Store {
       id: `qA-${this.getStore()['qA'].length}`,
     })
   }
+
+  public getCurrentQuestionId() {
+    return this.store.qA[this.store.qA.length - 1]['id']
+  }
   //#endregion
 
   //#region Private Methods
