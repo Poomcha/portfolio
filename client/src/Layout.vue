@@ -40,7 +40,7 @@ function handleClick() {
 </script>
 
 <template>
-    <div class="layout p-relative">
+    <div class="layout p-relative flex flex-column">
         <header>
             <div class="flex">
                 <img src="./assets/images/wip-2.png" alt="WIP" width="400" height="300" style="margin: auto;">
@@ -91,9 +91,14 @@ function handleClick() {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    overflow-y: hidden;
 }
 
-.footer {}
+.footer {
+    margin-top: auto;
+    position: relative;
+    top: 45px;
+}
 
 .footer-button {
     border-radius: 0;

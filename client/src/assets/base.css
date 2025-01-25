@@ -59,7 +59,5 @@ body {
 
 footer {
   width: calc(100% - 2 * var(--padding-lr-layout));
-  position: fixed;
-  top: calc(100vh - var(--height-button) - 0.75rem);
   animation-fill-mode: forwards;
 }
