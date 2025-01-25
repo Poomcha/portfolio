@@ -20,7 +20,9 @@ async function handleSubmit(event: Event) {
         props.store.setStoreAnswer(" ", props.id);
 
         // Disable contentEditable
-        (event.target as HTMLParagraphElement).attributes.removeNamedItem("contenteditable")
+        (event.target as HTMLParagraphElement).attributes.removeNamedItem("contenteditable");
+        // Insert parsed corresponding question
+        (event.target as HTMLParagraphElement).innerText = question;
 
         //     try {
         //         // This should be a stream
@@ -52,6 +54,10 @@ async function handleSubmit(event: Event) {
 
 const contentEditable = ref<HTMLParagraphElement | null>(null)
 
+function handleLineBeak() {
+    contentEditable.value!.innerText.concat("\n")
+}
+
 onMounted(() => {
     const contentEditableId = contentEditable.value!.dataset["id"]!
     if (props.store.getCurrentQuestionId() === contentEditableId) {
@@ -66,7 +72,7 @@ onMounted(() => {
             <span style="color: var(--color-text-user-name);">@user ></span>
         </div>
         <p contenteditable="plaintext-only" ref="contentEditable" :key="`cE-${id}`" @input="updateQuestion"
-            @keydown.enter.exact.prevent="handleSubmit" :data-id="id">
+            @keydown.enter.exact.prevent="handleSubmit" @keydown.shift.enter="handleLineBeak" :data-id="id">
         </p>
     </div>
     <br />
