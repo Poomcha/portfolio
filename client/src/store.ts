@@ -31,7 +31,7 @@ class Store {
     this.store = reactive<StoreInterface>({
       qA: [
         {
-          question: undefined,
+          question: '',
           answer: undefined,
           id: 'qA-0',
         },
@@ -107,7 +107,9 @@ class Store {
 
   //#region Public Methods
   public async initStore() {
-    const answer = await this.mistral.streamToStore(this, this.preambule, this.getCurrentId())
+    const answer = await this.mistral.streamToStore(this, this.preambule, this.getFirstId())
+
+    this.insertNewQA()
   }
 
   public insertNewQA() {

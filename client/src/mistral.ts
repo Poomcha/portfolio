@@ -20,7 +20,7 @@ export class Mistral {
   }
 
   public async streamToStore(store: Store, question: string, answerId: string) {
-    store.setStoreAnswer('', answerId);
+    store.setStoreAnswer('', answerId)
     // This should be a stream
     try {
       const response = await this.chat(question)

@@ -76,7 +76,7 @@ function isActiveQuestion() {
 }
 
 onMounted(() => {
-    const contentEditableId = contentEditable.value!.dataset["id"]!
+    const contentEditableId = contentEditable.value!.dataset["id"]
     if (props.store.getCurrentId() === contentEditableId) {
         contentEditable.value!.focus()
     }
@@ -88,7 +88,7 @@ const showQuestion = computed(() => props.id !== props.store.getStore().qA[0].id
 </script>
 
 <template>
-    <div v-if="showQuestion" class="flex flex-column gap-fs">
+    <div class="flex flex-column gap-fs">
         <div>
             <span style="color: var(--color-text-user-name);">@user ></span>
         </div>

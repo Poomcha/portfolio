@@ -7,17 +7,28 @@ import { computed } from 'vue';
 import { Store } from '../store';
 
 const props = defineProps<{ store: Store }>()
+
 const computedStoreQA = computed(() => {
-    return props.store.getStore().qA
+    return props.store.getStore().qA.slice(1)
 })
 
+const computedFirstAnswer = computed(() => {
+    const firstQAId = props.store.getFirstId()
+    return {
+        answer: props.store.getStoreAnswer(firstQAId),
+        id: firstQAId
+    }
+})
 </script>
 
 <template>
     <ul>
+        <li>
+            <Answer :answer="computedFirstAnswer.answer" :id="computedFirstAnswer.id" :store="props.store" />
+        </li>
         <li v-for="questionAnswer in computedStoreQA" :key="questionAnswer.id">
             <Question :question="questionAnswer.question" :id="questionAnswer.id" :store="props.store" />
-            <Answer :answer="questionAnswer.answer" :id="questionAnswer.id" :store="props.store"/>
+            <Answer :answer="questionAnswer.answer" :id="questionAnswer.id" :store="props.store" />
         </li>
     </ul>
 </template>
