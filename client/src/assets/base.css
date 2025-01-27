@@ -104,3 +104,15 @@ button:hover {
 footer {
   width: 100%;
 }
+
+@media screen and (min-width: 1024px) {
+  main, footer {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 2048px) {
+  main, footer {
+    width: 35%;
+  }
+}

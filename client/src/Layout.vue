@@ -39,7 +39,7 @@ function handleClick() {
 </script>
 
 <template>
-    <div class="layout p-relative flex flex-column">
+    <div class="layout p-relative flex flex-column flex-center gap-2fs">
         <header>
             <div class="flex">
                 <img src="./assets/images/wip-2.png" alt="WIP" width="400" height="300" style="margin: auto;">
@@ -89,9 +89,6 @@ function handleClick() {
 .layout {
     padding: 0 var(--padding-lr-layout);
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
     overflow-y: hidden;
 }
 
