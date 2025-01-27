@@ -14,7 +14,7 @@ const computedAnswer = computed(() => props.store.getStoreAnswer(props.id))
             <span style="color: var(--color-text-assistant-name);">@poomcha-assistant ></span>
         </div>
         <br />
-        <div v-html="answer"></div>
+        <div v-html="answer" style="background-color: var(--color-background-qA); padding: var(--padding-qA); border-radius: 0.2rem;"></div>
         <br />
     </div>
 </template>

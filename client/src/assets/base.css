@@ -1,6 +1,7 @@
 /* Color */
 :root {
   --color-background: #232627;
+  --color-background-qA: #1b1a1a;
   --color-text-assistant-name: #11d116;
   --color-text-user-name: #1d99f3;
   --color-text: #eff0f1;
@@ -19,6 +20,7 @@
   --padding-tb-layout: 0;
   --padding-lr-btn: 1rem;
   --padding-tb-btn: 1.25rem;
+  --padding-qA: 0.5rem;
 }
 
 *,
@@ -75,12 +77,16 @@ p {
   width: 100%;
   word-wrap: break-word;
   word-break: break-all;
+  background-color: var(--color-background-qA);
+  padding: var(--padding-qA);
+  border-radius: 0.2rem;
 }
 
 p[contenteditable] {
   caret-color: var(--color-text);
   font-weight: 500;
   letter-spacing: inherit;
+  padding: 0;
 }
 
 button {
@@ -106,13 +112,15 @@ footer {
 }
 
 @media screen and (min-width: 1024px) {
-  main, footer {
+  main,
+  footer {
     width: 50%;
   }
 }
 
 @media screen and (min-width: 2048px) {
-  main, footer {
+  main,
+  footer {
     width: 35%;
   }
 }
