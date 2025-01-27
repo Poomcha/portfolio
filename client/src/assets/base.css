@@ -71,8 +71,13 @@ li {
   list-style-type: none;
 }
 
-p[contenteditable] {
+p {
   width: 100%;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+p[contenteditable] {
   caret-color: var(--color-text);
   font-weight: 500;
   letter-spacing: inherit;
