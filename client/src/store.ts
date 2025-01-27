@@ -1,4 +1,5 @@
-import { Reactive, reactive } from 'vue'
+import { reactive } from 'vue'
+import { Mistral } from './mistral'
 
 //#region Types
 interface StoreInterface {
@@ -22,11 +23,15 @@ class Store {
     answer: undefined,
     id: 'qA-0',
   }
+  private mistral = new Mistral()
+
+  private preambule = `Present yourself in the language whose code is ${window.navigator.language}.`
+
   constructor() {
     this.store = reactive<StoreInterface>({
       qA: [
         {
-          question: '',
+          question: undefined,
           answer: undefined,
           id: 'qA-0',
         },
@@ -101,6 +106,10 @@ class Store {
   //#endregion
 
   //#region Public Methods
+  public async initStore() {
+    const answer = await this.mistral.streamToStore(this, this.preambule, this.getCurrentId())
+  }
+
   public insertNewQA() {
     this.store['qA'].push({
       question: '',
@@ -109,8 +118,12 @@ class Store {
     })
   }
 
-  public getCurrentQuestionId() {
+  public getCurrentId() {
     return this.store.qA[this.store.qA.length - 1]['id']
+  }
+
+  public getFirstId() {
+    return this.store.qA[0]['id']
   }
   //#endregion
 

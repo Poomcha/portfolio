@@ -54,36 +54,17 @@ async function submit(cE: typeof contentEditable) {
 
     const question = props.store.getStoreQuestion(props.id)
     if (question && question.trim().length > 0) {
-        // Assistant is display ahead of response
-        props.store.setStoreAnswer(" ", props.id);
 
         // Disable contentEditable
         cE.value.attributes.removeNamedItem("contenteditable");
         // Insert parsed corresponding question
         cE.value.innerText = question;
 
-        //     try {
-        //         // This should be a stream
-        //         const response = await mistral.chat(question)
-
-        //         if (response) {
-        //             const reader = response.getReader()
-        //             const decoder = new TextDecoder('utf-8')
-
-        //             while (true) {
-        //                 const { done, value } = await reader.read();
-        //                 if (done) {
-        //                     break;
-        //                 }
-        //                 const chunk = decoder.decode(value, { stream: true });
-        //                 props.store.appendToStoreAnswer(chunk, props.id)
-        //             }
-        //         }
-
-
-        // } catch (error) {
-        //     throw error
-        // }
+        try {
+            await mistral.streamToStore(props.store, question, props.id)
+        } catch (error) {
+            throw error
+        }
 
         // Insert new question prompt
         props.store.insertNewQA()
@@ -91,21 +72,23 @@ async function submit(cE: typeof contentEditable) {
 }
 
 function isActiveQuestion() {
-    return props.id === props.store.getCurrentQuestionId()
+    return props.id === props.store.getCurrentId()
 }
 
 onMounted(() => {
     const contentEditableId = contentEditable.value!.dataset["id"]!
-    if (props.store.getCurrentQuestionId() === contentEditableId) {
+    if (props.store.getCurrentId() === contentEditableId) {
         contentEditable.value!.focus()
     }
 })
 
 const showSubmitButton = computed(() => isMobile() && isActiveQuestion())
+
+const showQuestion = computed(() => props.id !== props.store.getStore().qA[0].id)
 </script>
 
 <template>
-    <div class="flex flex-column gap-fs">
+    <div v-if="showQuestion" class="flex flex-column gap-fs">
         <div>
             <span style="color: var(--color-text-user-name);">@user ></span>
         </div>
