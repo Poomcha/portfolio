@@ -60,7 +60,9 @@ class Store {
   }
   public setStoreQuestion(question: StoreQuestionType, id: StoreIdType) {
     try {
-      this.store['qA'][this.parseId(id)]['question'] = question
+      if (question) {
+        this.store['qA'][this.parseId(id)]['question'] = question.trim()
+      }
     } catch (error) {
       throw error
     }
