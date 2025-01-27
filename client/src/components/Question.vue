@@ -82,7 +82,7 @@ onMounted(() => {
     }
 })
 
-const showSubmitButton = computed(() => isMobile() && isActiveQuestion())
+const showSubmitButton = computed(() => isActiveQuestion())
 
 const showQuestion = computed(() => props.id !== props.store.getStore().qA[0].id)
 </script>
