@@ -2,12 +2,9 @@ import { Store } from './store'
 import axios from 'axios'
 
 export class Mistral {
-  private url = import.meta.env.VITE_SERVER_URL
-  private port = import.meta.env.VITE_SERVER_PORT
-  private endpoint = import.meta.env.VITE_SERVER_ENDPOINT
 
   public async chat(question: string, stream: boolean = false) {
-    const url = `${this.url}:${this.port}${this.endpoint}`
+    const url = `https://portfolio-production-670b.up.railway.app/api/chat`
 
     if (stream) {
       const response = await fetch(url, {
