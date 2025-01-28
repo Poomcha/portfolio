@@ -8,6 +8,7 @@ interface StoreInterface {
     answer?: string
     id: string
   }>
+  examples: String[]
 }
 
 type StoreQuestionType = StoreInterface['qA'][number]['question']
@@ -25,7 +26,8 @@ class Store {
   }
   private mistral = new Mistral()
 
-  private preambule = `Present yourself in the language whose code is ${window.navigator.language}.`
+  private preambulePrompt = `Present yourself in the language which code is ${window.navigator.language}.`
+  private examplesPrompt = `Generate 5 examples of question a recruiter might ask in language which code is ${window.navigator.language}.`
 
   constructor() {
     this.store = reactive<StoreInterface>({
@@ -36,6 +38,7 @@ class Store {
           id: 'qA-0',
         },
       ],
+      examples: [],
     })
   }
 
@@ -107,7 +110,20 @@ class Store {
 
   //#region Public Methods
   public async initStore() {
-    const answer = await this.mistral.streamToStore(this, this.preambule, this.getFirstId())
+    const promises = [
+      this.mistral.streamToStore(this, this.preambulePrompt, this.getFirstId()),
+      this.mistral.chat(this.examplesPrompt),
+    ]
+
+    try {
+      const [_preambule, examples] = await Promise.all(promises)
+
+      this.store.examples = JSON.parse(examples)
+        ['choices'][0]['message']['content'].replaceAll('`', '')
+        .replace('javascript', '')
+    } catch (error) {
+      throw error
+    }
 
     this.insertNewQA()
   }
