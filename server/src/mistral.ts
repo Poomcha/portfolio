@@ -10,6 +10,24 @@ export default class MistralClient {
     this.client = new Mistral({ apiKey: MISTRAL_API_KEY });
   }
 
+  // Produce a response of a chat completion from a specific MistralAI agent
+  public async chat(prompt: string, agentId = MISTRAL_AGENT_API_KEY) {
+    try {
+      if (!agentId) {
+        throw new Error("Missing agentId");
+      }
+      const modelResponse = await this.client.agents.complete({
+        messages: [{ role: "user", content: prompt }],
+        // Specific MistralAI Agent
+        agentId: agentId,
+      });
+
+      return modelResponse;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   // Produce a stream of a chat completion from a specific MistralAI agent
   public async chatStream(prompt: string, agentId = MISTRAL_AGENT_API_KEY) {
     try {

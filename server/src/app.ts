@@ -25,22 +25,34 @@ app.use(
 app.use(helmet());
 
 app.use("/api/chat", async (req, res) => {
-  res.setHeader("Content-Type", "text/plain");
-  res.setHeader("Transfer-Encoding", "chunked");
+  const { prompt, stream } = req.body;
 
-  const { prompt } = req.body;
+  if (stream) {
+    res.setHeader("Content-Type", "text/plain");
+    res.setHeader("Transfer-Encoding", "chunked");
+  } else {
+    res.setHeader("Content-Type", "application/json");
+  }
 
   const mistralClient = new MistralClient();
 
   try {
-    const chatStreamResponse = await mistralClient.chatStream(prompt);
+    if (stream) {
+      const chatStreamResponse = await mistralClient.chatStream(prompt);
 
-    // Stream back chatStreamResponse
-    for await (const event of chatStreamResponse) {
-      res.write(event.data.choices[0].delta.content);
+      // Stream back chatStreamResponse
+      for await (const event of chatStreamResponse) {
+        res.status(200).write(event.data.choices[0].delta.content);
+      }
+
+      res.end();
+    } else {
+      const chatResponse = await mistralClient.chat(prompt);
+
+      res.status(200).json(JSON.stringify(chatResponse));
     }
 
-    res.end();
+    return;
   } catch (error) {
     throw new Error("Service Unavailable.");
   }
