@@ -5,6 +5,7 @@ import Answer from './Answer.vue';
 import { computed } from 'vue';
 
 import { Store } from '../store';
+import Examples from './Examples.vue';
 
 const props = defineProps<{ store: Store }>()
 
@@ -25,6 +26,8 @@ const computedFirstAnswer = computed(() => {
     <ul>
         <li>
             <Answer :answer="computedFirstAnswer.answer" :id="computedFirstAnswer.id" :store="props.store" />
+            <Examples :store="props.store" />
+            <br />
         </li>
         <li v-for="questionAnswer in computedStoreQA" :key="questionAnswer.id">
             <Question :question="questionAnswer.question" :id="questionAnswer.id" :store="props.store" />

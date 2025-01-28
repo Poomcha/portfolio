@@ -12,7 +12,7 @@ store.initStore()
 
 <template>
   <Layout>
-    <Examples :store=store />
+    <!-- <Examples :store=store /> -->
     <QuestionAnswer :store="store" />
   </Layout>
 </template>
