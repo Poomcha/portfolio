@@ -19,6 +19,10 @@
   align-items: center;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-evenly-x {
   justify-content: space-evenly;
 }
@@ -49,6 +53,19 @@
   outline: none;
   border: none;
   padding: 0;
+}
+
+.button-example {
+  background-color: var(--color-background-qA);
+  color: var(--color-text);
+  padding: var(--padding-qA);
+  height: fit-content;
+  border-radius: 0.2rem;
+  border: 1px solid var(--color-btn-border);
+}
+
+.button-example:hover {
+  background-color: var(--color-background);
 }
 
 @media (hover: hover) {

@@ -6,6 +6,7 @@
   --color-text-user-name: #1d99f3;
   --color-text: #eff0f1;
   --color-link: #c572c5;
+  --color-btn-border: #8a7e52;
 }
 
 /* Size */
@@ -77,8 +78,7 @@ li {
 
 p {
   width: 100%;
-  word-wrap: break-word;
-  word-break: break-all;
+  word-wrap: normal;
   background-color: var(--color-background-qA);
   padding: var(--padding-qA);
   border-radius: 0.2rem;
@@ -88,7 +88,6 @@ p[contenteditable] {
   caret-color: var(--color-text);
   font-weight: 500;
   letter-spacing: inherit;
-  padding: 0;
 }
 
 button {

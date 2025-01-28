@@ -22,7 +22,8 @@ function isMobile() {
 
 // Update store question
 function updateQuestion(event: Event) {
-    props.store.setStoreQuestion((event.target as HTMLParagraphElement).innerText, props.id)
+    const element = event.target as HTMLParagraphElement
+    props.store.setStoreQuestion(element.innerText, props.id)
 }
 
 // Handle enter differently on Mobile / PC
@@ -84,7 +85,7 @@ onMounted(() => {
 
 const showSubmitButton = computed(() => isActiveQuestion())
 
-const showQuestion = computed(() => props.id !== props.store.getStore().qA[0].id)
+const question = computed(() => props.store.getStoreQuestion(props.id))
 </script>
 
 <template>
@@ -94,7 +95,9 @@ const showQuestion = computed(() => props.id !== props.store.getStore().qA[0].id
         </div>
         <div class="flex gap-2fs" style="max-width: 100%;">
             <p contenteditable="plaintext-only" ref="contentEditable" :key="`cE-${id}`" @input="updateQuestion"
-                @keydown.enter.exact="handleEnter" @keydown.shift.enter="handleLineBreak" :data-id="id">
+                @change="handleChange" @keydown.enter.exact="handleEnter" @keydown.shift.enter="handleLineBreak"
+                :data-id="id">
+                {{ question }}
             </p>
             <button v-if="showSubmitButton" @click="handleClick" class="flex flex-center button-submit"
                 style="align-self: last baseline; margin-left: auto;">

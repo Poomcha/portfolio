@@ -45,7 +45,7 @@ function handleClick() {
                 <img src="./assets/images/wip-2.png" alt="WIP" width="400" height="300" style="margin: auto;">
             </div>
         </header>
-        <main>
+        <main class="flex flex-column gap-2fs">
             <Suspense>
                 <slot></slot>
             </Suspense>

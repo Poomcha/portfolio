@@ -8,7 +8,7 @@ interface StoreInterface {
     answer?: string
     id: string
   }>
-  examples: String[]
+  examples: string[]
 }
 
 type StoreQuestionType = StoreInterface['qA'][number]['question']
@@ -60,6 +60,9 @@ class Store {
       throw error
     }
   }
+  public getExamples() {
+    return this.store.examples
+  }
   //#endregion
 
   //#region Setters
@@ -106,6 +109,9 @@ class Store {
       throw error
     }
   }
+  public setExamples(examples: string[]) {
+    this.store.examples = examples
+  }
   //#endregion
 
   //#region Public Methods
@@ -118,9 +124,9 @@ class Store {
     try {
       const [_preambule, examples] = await Promise.all(promises)
 
-      this.store.examples = JSON.parse(examples)
+      this.store.examples = JSON.parse(JSON.parse(examples)
         ['choices'][0]['message']['content'].replaceAll('`', '')
-        .replace('javascript', '')
+        .replace('javascript', ''))
     } catch (error) {
       throw error
     }
