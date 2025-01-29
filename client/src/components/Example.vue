@@ -8,9 +8,9 @@ function handleClick(event: Event) {
         (event.target as HTMLButtonElement).innerText,
         props.store.getCurrentId()
     );
-    const targetQuestion = window.document.querySelector(`[data-id=${props.store.getCurrentId()}]`) as HTMLParagraphElement
-    targetQuestion.scrollIntoView({block: "end", inline: "end"})
-}   
+
+    window.scrollTo(0, window.document.body.scrollHeight)
+}
 </script>
 
 <template>
