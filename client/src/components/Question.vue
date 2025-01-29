@@ -95,7 +95,7 @@ const question = computed(() => props.store.getStoreQuestion(props.id))
         </div>
         <div class="flex gap-2fs" style="max-width: 100%;">
             <p contenteditable="plaintext-only" ref="contentEditable" :key="`cE-${id}`" @input="updateQuestion"
-                @change="handleChange" @keydown.enter.exact="handleEnter" @keydown.shift.enter="handleLineBreak"
+                @keydown.enter.exact="handleEnter" @keydown.shift.enter="handleLineBreak"
                 :data-id="id">
                 {{ question }}
             </p>
