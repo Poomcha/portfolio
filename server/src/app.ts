@@ -36,26 +36,33 @@ app.use("/api/chat", async (req, res) => {
 
   const mistralClient = new MistralClient();
 
-  try {
-    if (stream) {
+  if (stream) {
+    try {
       const chatStreamResponse = await mistralClient.chatStream(prompt);
 
       // Stream back chatStreamResponse
       for await (const event of chatStreamResponse) {
         res.status(200).write(event.data.choices[0].delta.content);
       }
+    } catch (error) {
+      console.log(error);
 
-      res.end();
-    } else {
+      res.status(500).json(error);
+    }
+  } else {
+    try {
       const chatResponse = await mistralClient.chat(prompt);
 
       res.status(200).json(JSON.stringify(chatResponse));
-    }
+    } catch (error) {
+      console.error(error);
 
-    return;
-  } catch (error) {
-    throw new Error("Service Unavailable.");
+      res.status(500).json(error);
+    }
   }
+
+  res.end();
+  return;
 });
 
 app.get("/* ", (req, res) => {
