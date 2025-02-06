@@ -40,9 +40,14 @@ app.use("/api/chat", async (req, res) => {
     try {
       const chatStreamResponse = await mistralClient.chatStream(prompt);
 
-      // Stream back chatStreamResponse
-      for await (const event of chatStreamResponse) {
-        res.status(200).write(event.data.choices[0].delta.content);
+      if (typeof chatStreamResponse === "string") {
+        res.status(200).json(chatStreamResponse);
+        res.end();
+      } else {
+        // Stream back chatStreamResponse
+        for await (const event of chatStreamResponse) {
+          res.status(200).write(event.data.choices[0].delta.content);
+        }
       }
     } catch (error) {
       console.log(error);

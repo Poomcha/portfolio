@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "types": ["node"],
+    "typeRoots": ["./server/node_modules/@types"],
+  }
+}
